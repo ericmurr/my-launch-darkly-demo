@@ -18,7 +18,7 @@ export default async function PlaygroundPage() {
   }
 
   const ldClient = await getLDClient();
-  const featureEnabled = await ldClient.variation(
+  const isFeatureEnabled = await ldClient.variation(
     "my-feature-flag",
     user,
     false
@@ -36,7 +36,19 @@ export default async function PlaygroundPage() {
           </div>
         </div>
         <div className="min-h-[100vh] flex-1 rounded-xl bg-muted/50 md:min-h-min">
-          <p>Feature enabled: {featureEnabled ? "Yes" : "No"}</p>
+          <div className="p-4 rounded-lg bg-muted">
+            <h2 className="text-lg font-semibold mb-2">
+              SERVER COMPONENT Feature Flag Status
+            </h2>
+            <p className="text-sm">
+              The feature flag my-feature-flag is currently{" "}
+              <span
+                className={isFeatureEnabled ? "text-green-600" : "text-red-600"}
+              >
+                {isFeatureEnabled ? "enabled" : "disabled"}
+              </span>
+            </p>
+          </div>
           <p>User: {user.key}</p>
         </div>
       </div>
