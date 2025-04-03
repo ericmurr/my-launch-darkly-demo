@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import Link from "next/link";
 import {
   IconCamera,
   IconChartBar,
@@ -11,9 +12,8 @@ import {
   IconFileWord,
   IconFolder,
   IconHelp,
-  IconInnerShadowTop,
+  IconMonkeybar,
   IconCat,
-  IconListDetails,
   IconReport,
   IconSearch,
   IconSettings,
@@ -36,9 +36,9 @@ import {
 
 const data = {
   user: {
-    name: "shadcn",
-    email: "m@example.com",
-    avatar: "/avatars/shadcn.jpg",
+    name: "Eric Murr",
+    email: "eric.murr@unicity.com",
+    avatar: "/avatars/headshot.jpg",
   },
   navMain: [
     {
@@ -47,9 +47,9 @@ const data = {
       icon: IconDashboard,
     },
     {
-      title: "Lifecycle",
-      url: "/lifecycle",
-      icon: IconListDetails,
+      title: "Playground",
+      url: "/playground",
+      icon: IconMonkeybar,
     },
     {
       title: "Analytics",
@@ -161,10 +161,10 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               asChild
               className="data-[slot=sidebar-menu-button]:!p-1.5"
             >
-              <a href="#">
+              <Link href="/dashboard">
                 <IconCat className="!size-5" />
                 <span className="text-base font-semibold">Cute Cat Inc.</span>
-              </a>
+              </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>

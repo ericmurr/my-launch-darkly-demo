@@ -34,7 +34,11 @@ export function LoginForm({
               </div>
               <div className="grid gap-3">
                 <Label htmlFor="email">Email</Label>
-                <Input id="email" type="email" placeholder="m@example.com" />
+                <Input
+                  id="email"
+                  type="email"
+                  placeholder="eric.murr@unicity.com"
+                />
               </div>
               <div className="grid gap-3">
                 <div className="flex items-center">

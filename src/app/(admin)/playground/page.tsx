@@ -1,9 +1,9 @@
 import { SiteHeader } from "@/components/dashboard/site-header";
 
-export default function LifecyclePage() {
+export default function PlaygroundPage() {
   return (
     <>
-      <SiteHeader title="Lifecycle" />
+      <SiteHeader title="Playground" />
       <div className="flex flex-1 flex-col gap-4 p-6">
         <div className="grid auto-rows-min gap-4 md:grid-cols-3">
           <div className="aspect-video rounded-xl bg-muted/50" />
