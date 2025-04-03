@@ -6,18 +6,52 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { FormEvent } from "react";
+import { FormEvent, useState } from "react";
+import { useUser } from "@/contexts/user-context";
 
 export function LoginForm({
   className,
   ...props
 }: React.ComponentProps<"div">) {
   const router = useRouter();
+  const { setUser } = useUser();
+  const [email, setEmail] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // In a real app, you would validate credentials here
-    router.push("/dashboard");
+    setIsLoading(true);
+
+    try {
+      // Update the user context with the email
+      const user = {
+        key: email,
+        email: email,
+        anonymous: false,
+      };
+
+      setUser(user);
+
+      // Call the server-side API to update the user context
+      const response = await fetch("/api/user", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to update user context");
+      }
+
+      router.push("/dashboard");
+    } catch (error) {
+      console.error("Login error:", error);
+      // Handle error appropriately
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -38,6 +72,10 @@ export function LoginForm({
                   id="email"
                   type="email"
                   placeholder="eric.murr@unicity.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                  disabled={isLoading}
                 />
               </div>
               <div className="grid gap-3">
@@ -50,10 +88,10 @@ export function LoginForm({
                     Forgot your password?
                   </a>
                 </div>
-                <Input id="password" type="password" />
+                <Input id="password" type="password" disabled={isLoading} />
               </div>
-              <Button type="submit" className="w-full">
-                Login
+              <Button type="submit" className="w-full" disabled={isLoading}>
+                {isLoading ? "Logging in..." : "Login"}
               </Button>
               <div className="after:border-border relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t">
                 <span className="bg-card text-muted-foreground relative z-10 px-2">
@@ -102,6 +140,7 @@ export function LoginForm({
               src="/funny-cat.jpeg"
               alt="Cute cat wearing a shark hat"
               fill
+              sizes="(max-width: 768px) 100vw, 50vw"
               className="object-cover"
               priority
             />
