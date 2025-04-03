@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { getLDClient } from "@/lib/ld-server";
 import { cookies } from "next/headers";
 
@@ -17,14 +18,14 @@ export default async function MyServerComponent() {
 
   const ldClient = await getLDClient();
   const isFeatureEnabled = await ldClient.variation(
-    "my-feature-flag",
+    "recent-cats-section",
     user,
     false
   );
   return (
     <>
-      <div className="p-4 rounded-lg bg-muted">
-        <h2 className="text-lg font-semibold mb-2">SERVER COMPONENT</h2>
+      <div className="p-4 rounded-lg bg-muted h-full">
+        <h2 className="text-lg font-semibold mb-2">SERVER component</h2>
         <p className="text-sm">
           The feature flag is{" "}
           <span
@@ -33,12 +34,17 @@ export default async function MyServerComponent() {
             {isFeatureEnabled ? "enabled" : "disabled"}
           </span>
         </p>
-        {/* <div className="text-sm pt-4">
-          <p className="font-medium mb-1">User Context:</p>
-          <pre className="p-2 rounded text-xs overflow-auto">
-            {JSON.stringify(user, null, 2)}
-          </pre>
-        </div> */}
+        {isFeatureEnabled && (
+          <p className="text-sm pt-10">
+            <Image
+              src="/kitten.jpg"
+              alt="Cat"
+              width={200}
+              height={100}
+              className="rounded-lg"
+            />
+          </p>
+        )}
       </div>
     </>
   );

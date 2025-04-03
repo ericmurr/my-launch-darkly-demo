@@ -17,9 +17,7 @@ export function MyLdDetails() {
   }, [ldClient]);
 
   return (
-    <div className="p-4 rounded-lg bg-muted">
-      <h2 className="text-lg font-semibold mb-2">FLAG INFO</h2>
-
+    <div className="p-4 rounded-lg bg-muted h-full">
       <div className="text-sm pt-4">
         <p className="font-medium mb-1">All Feature Flags:</p>
         <pre className="p-2 rounded text-xs overflow-auto">
