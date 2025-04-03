@@ -9,7 +9,7 @@ export function MyClientComponent() {
 
   return (
     <div className="p-4 rounded-lg bg-muted h-full">
-      <h2 className="text-lg font-semibold mb-2">CLIENT component</h2>
+      <h2 className="text-lg font-semibold mb-2">React CLIENT component</h2>
       <p className="text-sm">
         The feature flag is{" "}
         <span className={isFeatureEnabled ? "text-green-600" : "text-red-600"}>

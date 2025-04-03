@@ -25,7 +25,7 @@ export default async function MyServerComponent() {
   return (
     <>
       <div className="p-4 rounded-lg bg-muted h-full">
-        <h2 className="text-lg font-semibold mb-2">SERVER component</h2>
+        <h2 className="text-lg font-semibold mb-2">React SERVER component</h2>
         <p className="text-sm">
           The feature flag is{" "}
           <span
