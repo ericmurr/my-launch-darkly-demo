@@ -9,13 +9,13 @@ export default async function PlaygroundPage() {
       <SiteHeader title="Playground" />
       <div className="flex flex-1 flex-col gap-4 p-6">
         <div className="grid auto-rows-min gap-4 md:grid-cols-3">
-          <div className="aspect-video rounded-xl bg-muted/50">
+          <div className=" rounded-xl bg-muted/50 h-96">
             <MyLdDetails />
           </div>
-          <div className="aspect-video rounded-xl bg-muted/50">
+          <div className="rounded-xl bg-muted/50">
             <MyServerComponent />
           </div>
-          <div className="aspect-video rounded-xl bg-muted/50">
+          <div className="rounded-xl bg-muted/50">
             <MyClientComponent />
           </div>
         </div>
