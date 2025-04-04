@@ -18,13 +18,13 @@ export function MyLdDetails() {
 
   return (
     <div className="p-4 rounded-lg bg-muted h-full">
-      <div className="text-sm pt-4">
+      <div className="text-sm">
         <p className="font-medium mb-1">All Feature Flags:</p>
         <pre className="p-2 rounded text-xs overflow-auto">
           {JSON.stringify(flags, null, 2)}
         </pre>
       </div>
-      <div className="text-sm pt-4">
+      <div className="text-sm">
         <p className="font-medium mb-1">User Context:</p>
         <pre className="p-2 rounded text-xs overflow-auto">
           {JSON.stringify(user, null, 2)}

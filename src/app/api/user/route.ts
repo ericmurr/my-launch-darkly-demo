@@ -17,6 +17,10 @@ export async function POST(request: Request) {
       key: email,
       email: email,
       anonymous: false,
+      custom: {
+        device: "browser",
+        // Add any other custom attributes here
+      },
     };
 
     // Get the shared LaunchDarkly client instance

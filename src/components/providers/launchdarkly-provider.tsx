@@ -39,7 +39,15 @@ export function LaunchDarklyProvider({ children }: { children: ReactNode }) {
       lastUserKey.current = user?.key ?? null;
       return withLDProvider<LDProviderProps>({
         clientSideID: process.env.NEXT_PUBLIC_LD_CLIENT_ID as string,
-        user: user || { key: "anonymous" },
+        user: {
+          ...user,
+          key: user?.key ?? "anonymous",
+          custom: {
+            ...user?.custom,
+            device: "browser",
+            // Add any other custom attributes here
+          },
+        },
         options: {
           bootstrap: "localStorage",
         },
