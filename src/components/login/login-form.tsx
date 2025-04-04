@@ -15,7 +15,7 @@ export function LoginForm({
 }: React.ComponentProps<"div">) {
   const router = useRouter();
   const { setUser } = useUser();
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState("demo@unicity.com");
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -71,7 +71,7 @@ export function LoginForm({
                 <Input
                   id="email"
                   type="email"
-                  placeholder="eric.murr@unicity.com"
+                  placeholder="me@example.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
@@ -88,12 +88,17 @@ export function LoginForm({
                     Forgot your password?
                   </a>
                 </div>
-                <Input id="password" type="password" disabled={isLoading} />
+                <Input
+                  id="password"
+                  type="password"
+                  value="demo"
+                  disabled={isLoading}
+                />
               </div>
               <Button type="submit" className="w-full" disabled={isLoading}>
                 {isLoading ? "Logging in..." : "Login"}
               </Button>
-              <div className="after:border-border relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t">
+              {/* <div className="after:border-border relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t">
                 <span className="bg-card text-muted-foreground relative z-10 px-2">
                   Or continue with
                 </span>
@@ -126,7 +131,7 @@ export function LoginForm({
                   </svg>
                   <span className="sr-only">Login with Meta</span>
                 </Button>
-              </div>
+              </div> */}
               <div className="text-center text-sm">
                 Don&apos;t have an account?{" "}
                 <a href="#" className="underline underline-offset-4">

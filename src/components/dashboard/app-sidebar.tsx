@@ -2,6 +2,9 @@
 
 import * as React from "react";
 import Link from "next/link";
+import { useLDClient } from "launchdarkly-react-client-sdk";
+import { useEffect, useState } from "react";
+import { LDContext } from "launchdarkly-js-sdk-common";
 import {
   IconCamera,
   IconChartBar,
@@ -152,6 +155,27 @@ const data = {
 };
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const ldClient = useLDClient();
+  const [user, setUser] = useState<LDContext | null>(null);
+
+  useEffect(() => {
+    if (ldClient) {
+      const currentUser = ldClient.getContext();
+      setUser(currentUser);
+    }
+  }, [ldClient]);
+
+  const userData = {
+    name:
+      typeof user?.name === "string"
+        ? user.name
+        : typeof user?.email === "string"
+        ? user.email
+        : "User",
+    email: typeof user?.email === "string" ? user.email : "user@example.com",
+    avatar: "/avatars/headshot.jpg",
+  };
+
   return (
     <Sidebar collapsible="offcanvas" {...props}>
       <SidebarHeader>
@@ -175,7 +199,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <NavSecondary items={data.navSecondary} className="mt-auto" />
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={data.user} />
+        <NavUser user={userData} />
       </SidebarFooter>
     </Sidebar>
   );
