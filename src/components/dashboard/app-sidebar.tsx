@@ -15,10 +15,10 @@ import {
   IconFileWord,
   IconFolder,
   IconHelp,
-  IconMonkeybar,
   IconCat,
   IconReport,
   IconSearch,
+  IconLayout,
   IconSettings,
   IconUsers,
 } from "@tabler/icons-react";
@@ -50,9 +50,9 @@ const data = {
       icon: IconDashboard,
     },
     {
-      title: "Playground",
-      url: "/playground",
-      icon: IconMonkeybar,
+      title: "Demo",
+      url: "/demo",
+      icon: IconLayout,
     },
     {
       title: "Analytics",
